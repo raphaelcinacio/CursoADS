@@ -1,0 +1,373 @@
+#include <stdio.h>
+#include <locale.h>
+#include <iostream>
+#include<stdlib.h>
+#include <string.h>
+using namespace std;
+
+class Data{
+	private:
+		int dia;
+		int mes;
+		int ano;
+
+	public:
+		Data(int dia, int mes, int ano)
+		{
+			this->dia = dia;
+			this->mes = mes;
+			this->ano = ano;
+		}
+		
+		Data()
+		{
+			this->dia = 0;
+			this->mes = 0;
+			this->ano = 0;
+		}
+		
+		void setDia(int dia)
+		{
+			this->dia = dia;
+		}
+		
+		void setMes(int mes)
+		{
+			this->mes = mes;
+		}
+
+		void setAno(int ano)
+		{
+			this->ano = ano;
+		}
+		
+		int getDia()
+		{
+			return this->dia;
+		}
+		
+		int getMes()
+		{
+			return this->mes;
+		}
+
+		int getAno()
+		{
+			return this->ano;
+		}
+
+    string getDataOntem(){
+      string str;
+      if(this -> dia == 30){
+        if(this -> mes == 11 ){
+          str = to_string(this->dia-1) + "/" + to_string(this->mes) + "/" + to_string(this->ano);
+        }
+        else if(this -> mes == 4 || this -> mes == 6 || this -> mes == 9){
+          str = to_string(this->dia-1) + "/0" + to_string(this->mes) + "/" + to_string(this->ano);
+        }
+      }
+      else if(this -> dia == 31){
+        if(this -> mes == 10){
+          str = to_string(this->dia-1) + "/" + to_string(this->mes) + "/" + to_string(this->ano);
+        }
+        else if(this -> mes == 12){
+          str = to_string(this->dia-1) + "/" + to_string(this->mes) + "/" + to_string(this->ano);
+        }
+        else if(this -> mes == 1 || this -> mes == 3 || this -> mes == 5 || this -> mes == 7 || this -> mes == 8){
+          str = to_string(this->dia-1) + "/0" + to_string(this->mes) + "/" + to_string(this->ano);
+        }
+      }
+      else if(this -> dia == 1){
+        if(this -> mes == 1){
+          str = "31/12/" + to_string(this->ano-1);
+        }
+        else if(this -> mes == 3 || this -> mes == 5 || this -> mes == 7 || this -> mes == 8){
+          if(this -> mes - 1 == 2){
+            str = "28/0" + to_string(this->mes-1) + "/" + to_string(this->ano);
+          }
+          else if(this -> mes == 8){
+            str = "31/0" + to_string(this->mes-1) + "/" + to_string(this->ano);
+          }
+          else{
+            str = "30/0" + to_string(this->mes-1) + "/" + to_string   (this->ano);
+          }
+        }
+        else if(this -> mes == 10){
+          str = "30/" + to_string(this->mes-1) + "/" + to_string(this->ano);
+        }
+        else if(this -> mes == 12){
+          str = "30/" + to_string(this->mes-1) + "/" + to_string(this->ano);
+        }
+        else if(this -> mes == 2 || this -> mes == 4 || this -> mes == 6 || this -> mes == 9){
+          str = "31/0" + to_string(this->mes-1) + "/" + to_string(this->ano);
+        }
+        else if(this -> mes == 11){
+          str = "31/" + to_string(this->mes-1) + "/" + to_string(this->ano);
+        }
+      }
+      else if(this -> dia <= 10){
+        str = "0"+ to_string(this->dia-1) + "/0" + to_string(this->mes) + "/" + to_string(this->ano);
+      }
+      else{
+        if(this -> mes < 10){
+          str = to_string(this->dia-1) + "/0" + to_string(this->mes) + "/" + to_string(this->ano);
+        }
+        else{
+          str = to_string(this->dia-1) + to_string(this->mes) + "/" + to_string(this->ano);
+        }
+      }
+      return str;
+    }
+
+		string getDataAtual(){
+      string str;
+      if(this -> dia == 30){
+        if(this -> mes == 11 ){
+          str = to_string(this->dia) + "/" + to_string(this->mes) + "/" + to_string(this->ano);
+        }
+        else if(this -> mes == 4 || this -> mes == 6 || this -> mes == 9){
+          str = to_string(this->dia) + "/0" + to_string(this->mes) + "/" + to_string(this->ano);
+        }
+      }
+      else if(this -> dia == 31){
+        if(this -> mes == 10){
+          str = to_string(this->dia) + "/" + to_string(this->mes) + "/" + to_string(this->ano);
+        }
+        else if(this -> mes == 12){
+          str = to_string(this->dia) + "/" + to_string(this->mes) + "/" + to_string(this->ano);
+        }
+        else if(this -> mes == 1 || this -> mes == 3 || this -> mes == 5 || this -> mes == 7 || this -> mes == 8){
+          str = to_string(this->dia) + "/0" + to_string(this->mes) + "/" + to_string(this->ano);
+        }
+      }
+      else if(this -> dia <= 9){
+        str = "0"+ to_string(this->dia) + "/" + to_string(this->mes) + "/" + to_string(this->ano);
+      }
+      else{
+        if(this -> mes <= 9){
+          str = to_string(this->dia) + "/0" + to_string(this->mes) + "/" + to_string(this->ano);
+        }
+        else{
+          str = to_string(this->dia) + to_string(this->mes) + "/" + to_string(this->ano);
+        }
+        
+      }
+      return str;
+    }
+
+		string getDataAmanha(){
+      string str;
+      if(this -> dia == 30){
+        if(this -> mes == 11 ){
+          str = "01/" + to_string(this->mes+1) + "/" + to_string(this->ano);
+        }
+        else if(this -> mes == 4 || this -> mes == 6 || this -> mes == 9){
+          str = "01/0" + to_string(this->mes+1) + "/" + to_string(this->ano);
+        }
+      }
+      else if(this -> dia == 31){
+        if(this -> mes == 10){
+          str = "01/" + to_string(this->mes+1) + "/" + to_string(this->ano);
+        }
+        else if(this -> mes == 12){
+          str = "01/0" + to_string(this->mes-11) + "/" + to_string(this->ano+1);
+        }
+        else if(this -> mes == 1 || this -> mes == 3 || this -> mes == 5 || this -> mes == 7 || this -> mes == 8){
+          str = "01/0" + to_string(this->mes+1) + "/" + to_string(this->ano);
+        }
+      }
+      else if(this -> dia == 28 && this -> mes == 2){
+        if(this -> ano % 4 == 0){
+          str = "29/02/" + to_string(this->ano);
+        }
+        else{
+          str = "01/03/" + to_string(this->ano);
+        }
+      }
+      else if(this -> dia <= 8){
+        str = "0"+ to_string(this->dia+1) + "/" + to_string(this->mes) + "/" + to_string(this->ano);
+      }
+      else{
+        if(this -> mes < 10){
+          str = to_string(this->dia+1) + "/0" + to_string(this->mes) + "/" + to_string(this->ano);
+        }
+        else{
+          str = to_string(this->dia+1) + to_string(this->mes) + "/" + to_string(this->ano);
+        }
+      }
+      return str;
+		}
+
+};
+
+class Contato{
+  private:
+    string email, nome, telefone;
+    Data* dtnasc; 
+    int ano;
+
+	public:
+		Contato(string email, string nome, string telefone,Data* dtnasc, int ano)
+		{
+			this->email = email;
+			this->nome = nome;
+			this->telefone = telefone;
+      this->dtnasc = dtnasc;
+      this->ano = ano;
+		}
+		
+		Contato()
+		{
+			this->email = "Sem e-mail";
+			this->nome = "Sem nome";
+			this->telefone = "Sem telefone";
+      this->dtnasc = 0;
+      this->ano = 0;
+		}
+		
+		void setEmail(string email)
+		{
+			this->email = email;
+		}
+		
+		void setNome(string nome)
+		{
+			this->nome = nome;
+		}
+
+		void setTelefone(string telefone)
+		{
+			this->telefone = telefone;
+		}
+
+    void setDtnasc(Data* dtnasc)
+		{
+			this->dtnasc = dtnasc;
+		}
+
+    void setAno(int ano)
+		{
+			this->ano = ano;
+		}
+		
+		string getEmail()
+		{
+			return this->email;
+		}
+		
+		string getNome()
+		{
+			return this->nome;
+		}
+
+		string getTelefone()
+		{
+			return this->telefone;
+		}
+
+    Data* getDtnasc()
+		{
+			return this->dtnasc;
+		}
+
+    int getAno()
+		{
+			return this->ano;
+		}
+
+    int getIdade(){
+      
+      return 2021 - this->ano;
+    }
+
+};
+
+int main()
+{
+  cout << "Por gentileza, caso o dia ou mês seja inferior a 10, não utilizar";
+  cout << " 0 antes do dia ou mês";
+  int dia, mes, ano;
+	printf("\nDigite o dia atual: ");
+	scanf("%d", &dia);
+  printf("Digite o mês atual: ");
+	scanf("%d", &mes);
+  printf("Digite o ano atual: ");
+	scanf("%d", &ano);
+  Data* dataOntem = new Data(dia, mes, ano);
+  cout << "\nData de ontem: " + dataOntem -> getDataOntem();
+  Data* dataAtual = new Data(dia, mes, ano);
+  cout << "\nData Atual: " + dataAtual -> getDataAtual();
+  Data* dataAmanha = new Data(dia, mes, ano);
+  cout << "\nData de amanhã: " + dataAmanha -> getDataAmanha();
+
+  string matriz [5][5];
+  printf("\n");
+  string email, nome, telefone;
+  int anoNasc, mesNasc, diaNasc;
+  Data* dtnasc = new Data();
+  int cont = 0;
+  for(int i = 0; i < 5; i++){
+      printf("\nDigite o seu e-mail: ");
+      cin >> email;
+      matriz[i][cont] = email;
+      cont++;
+      printf("Digite o seu nome: ");
+      cin >> nome;
+      matriz[i][cont] = nome;
+      cont++;
+      printf("Digite o seu telefone: ");
+      cin >> telefone;
+      matriz[i][cont] = telefone;
+      cont++;
+      printf("Digite seu dia de nascimento: ");
+      cin >> diaNasc;
+      printf("Digite seu mês de nascimento: ");
+      cin >> mesNasc;
+      printf("Digite seu ano de nascimento: ");
+      cin >> anoNasc; 
+      string a = to_string(anoNasc);
+      string b = to_string(mesNasc);
+      string c = to_string(diaNasc);
+      matriz[i][cont] = c+"/"+b+"/"+a;
+      cont++;
+      Contato* idadeAtual = new Contato(email, nome, telefone, dtnasc, anoNasc);
+      int d = 0;
+      if(mes < mesNasc){
+        d = idadeAtual -> getIdade() - 1;
+      }
+      else if(mes == mesNasc){
+        if(dia > diaNasc){
+          d = idadeAtual -> getIdade() - 1;
+        }
+      }
+      else{
+        d = idadeAtual -> getIdade();
+      }
+
+      matriz[i][4] = to_string(d);
+      
+      cont = 0;
+  }
+  int contb = 0;
+  cout << "\n";
+  for(int i = 0; i < 5; i++){
+      cout << "E-mail: "+matriz[i][contb];
+      cout << "\t";
+      contb++;
+      cout << "Nome: "+matriz[i][contb];
+      cout << "\t";
+      contb++;
+      cout << "Telefone: "+matriz[i][contb];
+      cout << "\t";
+      contb++;
+      cout << "Data de nascimento: "+matriz[i][contb];
+      cout << "\t";
+      contb++;
+      cout << "Idade: "+ matriz[i][contb];
+      cout << "\t";
+      cout << "\n\n";
+      contb = 0;
+  }
+  
+
+}
