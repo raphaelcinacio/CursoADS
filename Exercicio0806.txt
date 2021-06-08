@@ -1,0 +1,125 @@
+#include <iostream>
+#include <string.h>
+
+using namespace std;
+
+int escolha;
+int cont = 0;
+int tot;
+string info[100][3];
+
+class Funcionario{
+  private:
+   int prontuario;
+  private:
+   string nome;
+  private:
+   double salario;
+
+   public:
+    // Setter
+    void setProntuario(int p) {
+      prontuario = p;
+    }
+    // Getter
+    int getProntuario() {
+      return  prontuario;
+    }
+    // Setter
+    void setNome(string n) {
+      nome = n;
+    }
+    // Getter
+    string getNome() {
+      return this -> nome;
+    }
+    // Setter
+    void setSalario(double s) {
+      salario = s;
+    }
+    // Getter
+    double getSalario() {
+      return this -> salario;
+    }
+
+  
+
+  void Incluir(){  
+      info[cont][0] = to_string(this -> prontuario);
+      info[cont][1] = this -> nome;
+      info[cont][2] = to_string(this -> salario);
+  }
+  void Excluir(int c){
+      info[c][0].erase();
+      info[c][1].erase();
+      info[c][2].erase();
+  }
+
+  void Pesquisar(int v){
+    for(int i = 0; i <=2; i++){
+        cout << info[v][i] << " ";
+      }
+  }
+
+  void Listar(int a){
+    for(int j = 0; j < a; j++){
+      for(int i = 0; i <=2; i++){
+          cout << info[j][i] << " ";
+        }
+        printf("\n");
+    }
+    cout << "Valor total dos salários: " << tot;
+  }
+
+};
+
+int main() {
+  Funcionario f;
+  do{
+    printf("----------------------------------------\n");
+    printf("OPÇÕES");
+    printf("\n0. Sair");
+    printf("\n1. Incluir");
+    printf("\n2. Excluir");
+    printf("\n3. Pesquisar");
+    printf("\n4. Listar");
+    printf("\nDigite a opção, por gentileza: ");
+    scanf("%d", &escolha);
+    printf("----------------------------------------\n");
+    if(escolha == 1){  
+      int pront;
+      string name;
+      double salary;
+      printf("\nDigite o prontuario do usuário: ");
+      cin >> pront;
+      f.setProntuario(pront);
+      printf("\nDigite o nome do usuário: ");
+      cin >> name;
+      f.setNome(name); 
+      printf("\nDigite o salário do usuário: ");
+      cin >> salary;
+      f.setSalario(salary);
+      tot += salary;
+      f.Incluir();
+      cont++;
+    }
+      
+      
+    else if(escolha == 2){
+      int valor;
+      printf("\nDigite o registro que deseja deletar: ");
+      scanf("%d", &valor);
+      f.Excluir(valor);
+    }
+    else if(escolha == 3){
+      int valor;
+      printf("\nDigite o registro que deseja pesquisar: ");
+      scanf("%d", &valor);
+      f.Pesquisar(valor);
+    }
+    else if(escolha == 4){
+      int a = cont;
+      f.Listar(a);
+    }
+  }while(escolha != 0);
+}
