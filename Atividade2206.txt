@@ -1,0 +1,47 @@
+#include <iostream>
+
+using namespace std;
+
+int valor = 0;
+int par[30];
+int contPar = 0;
+int impar[30];
+int contImpar = 0;
+int valores[30];
+int cont = 0;
+int main() {
+  for(int i = 0; i < 10; i++){
+    int a;
+    a = valor;
+    printf("Digite um número: ");
+    scanf("%d",&valor);
+    while(a >= valor){
+      printf("Digite um número maior que o anterior: ");
+      scanf("%d",&valor);
+    }
+    if(valor % 2 == 0){
+      par[contPar] = valor;
+      contPar++;
+    }
+    else{
+      impar[contImpar] = valor;
+      contImpar++;
+    }
+    valores[cont] = valor;
+    cont++;
+  }
+  printf("\nValores pares\n");
+  for(int j = contPar - 1; j >= 0; j--){
+    cout << par[j] << " ";
+  }
+  printf("\n-----------------------------\n");
+  printf("Valores ímpares\n");
+  for(int k = contImpar - 1; k >= 0; k--){
+    cout << impar[k] << " ";
+  }
+  printf("\n-----------------------------\n");
+  printf("Todos os valores\n");
+  for(int b = (contImpar+contPar) - 1; b >= 0; b--){
+    cout << valores[b] << " ";
+  }
+}
