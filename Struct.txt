@@ -1,0 +1,59 @@
+#include <iostream>
+#include <queue>
+
+using namespace std;
+
+int cont = 0;
+queue<int> fila;
+//
+
+struct Senhas{
+
+  int senhasGeradas(int c){
+    return cont += c;
+  }
+
+  int senhasAtendidas(int c){
+    if(cont == 0){
+      return 0;
+    }
+    else{
+      return cont -= c;
+    }
+  }
+
+};
+
+int main() {
+  struct Senhas x;
+  int a = 0;
+  int opcao;
+  printf("HOSPITAL HELP ME");
+  do{
+    printf("\n0. Sair\n1. Gerar senha\n2. Realizar atendimento");
+    printf("\nEscolha uma das opções: ");
+    scanf("%d",&opcao);
+    if(opcao == 1){
+      fila.push(x.senhasGeradas(1));
+    }
+    else if(opcao == 2 && cont > 0){
+      if(a == 0){
+        cout << "\nSenha que está sendo atendida: " << fila.front();
+        fila.push(x.senhasAtendidas(1));
+        a++;
+        fila.pop();
+      }
+      else{
+        cout << "\nSenha que está sendo atendida: " << (fila.front()+a);
+        fila.push(x.senhasAtendidas(1));
+        a++;
+        fila.pop();
+      }
+    }
+    else if(opcao == 0 && cont != 0){
+      cout << "\nNão é possível sair do sistema, até que todas as senhas sejam atendidas\n";
+    }
+    cout << "\nNúmero restante de senhas: " << cont << "\n";
+  }while(opcao != 0 || cont != 0);
+  printf("Fim do programa");
+}
