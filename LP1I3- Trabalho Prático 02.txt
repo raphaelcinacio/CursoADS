@@ -1,0 +1,158 @@
+/*TESTE*/
+
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner tela = new Scanner(System.in);
+		ConsultaAgendada p1 = new ConsultaAgendada(13, 59, 11, 1, 1, 2020, "José", "Carlos");
+			
+		System.out.println("p1:");
+		
+		System.out.println(p1.getData());
+		System.out.println(p1.getHora());
+		System.out.println("Nome do médico: "+p1.getNomeMedico());
+		System.out.println("Nome do paciente: "+p1.getNomePaciente());
+		System.out.println("Quantidade: "+p1.getAmostra());
+		
+		System.out.println("---------------------------------------------------------------------------------------");
+		
+		ConsultaAgendada p2 = new ConsultaAgendada();
+		
+		int d, m, a, h, min, s;
+		
+		System.out.println("p2:");
+		
+		System.out.print("Digite o valor do dia: ");
+		d = tela.nextInt();
+		System.out.print("Digite o valor do mês: ");
+		m = tela.nextInt();
+		System.out.print("Digite o valor do ano: ");
+		a = tela.nextInt();
+		p2.setData(d, m, a);
+		
+		System.out.print("Digite as horas: ");
+		h = tela.nextInt();
+		System.out.print("Digite os minutos: ");
+		min = tela.nextInt();
+		System.out.print("Digite os segundos: ");
+		s = tela.nextInt();
+		p2.setHora(h, min, s);
+		
+		System.out.print("Digite o nome do médico: ");
+		p2.setNomeMedico(tela.next());
+		
+		System.out.print("Digite o nome do paciente: ");
+		p2.setNomePaciente(tela.next());
+		
+		System.out.println("\nResultado\n---------------------------------------------------------------------------------------");
+		
+		System.out.println(p2.getData());
+		System.out.println(p2.getHora());
+		System.out.println("Nome do médico: "+p2.getNomeMedico());
+		System.out.println("Nome do paciente: "+p2.getNomePaciente());
+		System.out.println("Quantidade: "+p2.getAmostra());
+		
+		System.out.println("\nResultado\n---------------------------------------------------------------------------------------");
+		
+		System.out.println("p1 após alteração:");
+		
+		p1.setData(10, 10, 2020);
+		p1.setHora(14, 7, 8);
+		p1.setNomeMedico("Pedro");
+		p1.setNomePaciente("Marcio");
+		
+		System.out.println(p1.getData());
+		System.out.println(p1.getHora());
+		System.out.println("Nome do médico: "+p1.getNomeMedico());
+		System.out.println("Nome do paciente: "+p1.getNomePaciente());
+		System.out.println("Quantidade: "+p1.getAmostra());
+		
+		System.out.println("\nQuantidade total: "+((p1.getAmostra() + p2.getAmostra())-2));
+	}
+}
+
+/*Classe*/
+
+public class ConsultaAgendada {
+	
+	private Data data;
+	private Hora hora;
+	private String nomePaciente;
+	private int quantidade;
+	private String nomeMedico;
+	
+	public ConsultaAgendada() {
+		this.hora = new Hora();
+		this.data = this.data;
+		this.nomePaciente = this.nomePaciente;
+		this.nomeMedico = this.nomeMedico;
+	}
+	
+	public ConsultaAgendada(int h, int mi, int s, int d, int mes, int a, String p, String m) {
+		this.hora = new Hora(h,mi,s);
+		this.data = new Data(d, mes, a);
+		this.nomePaciente = p;
+		this.nomeMedico = m;
+	}
+	
+	public ConsultaAgendada (Data d, Hora h, String p, String m) {
+		this.data = new Data();
+		this.hora = new Hora();
+		this.nomePaciente = p;
+		this.nomeMedico = m;
+	}
+	
+	public void setData(int a, int b, int c) {
+		this.data = new Data(a,b,c);
+	}
+	
+	public void setData() {
+		this.data = this.data;
+	}
+	
+	public void setHora(int a, int b, int c) {
+		this.hora = new Hora(a,b,c);
+	}
+	
+	public void setHora() {
+		this.hora = this.hora;
+	}
+	
+	public void setNomePaciente(String p){
+		this.nomePaciente = p;
+	}
+	
+	public void setNomePaciente(){
+		this.nomePaciente = this.nomePaciente;
+	}
+	
+	public void setNomeMedico(String m){
+		this.nomeMedico = m;
+	}
+	
+	public void setNomeMedico(){
+		this.nomeMedico = this.nomeMedico;
+	}
+	
+	public int getAmostra() {
+		return ++this.quantidade;
+	}
+	
+	public String getData() {
+		return "Data: "+this.data.retDia() +"/"+this.data.retMes()+"/"+this.data.retAno();
+	}
+	
+	public String getHora() {
+		return this.hora.getHora1();
+	}
+	
+	public String getNomePaciente() {
+		return this.nomePaciente;
+	}
+	
+	public String getNomeMedico() {
+		return this.nomeMedico;
+	}
+}
